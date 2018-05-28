@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Game
 {
-    class Block
+    public class Block
     {
-        //block id
-        //data that all chunks have
-        //texture
-        //protected float blockHardness;
-        //protected float blockResistance;
-        //protected Material blockMaterial;
-        //transparency
+        public int id;
+        public NamedBinaryTag.ObjectProperty data;
+        //scripts go here
 
+        public void Read(BinaryReader r)
+        {
+            id = r.ReadInt32();
+            data = new NamedBinaryTag.ObjectProperty();
+            data.Read(r);
+        }
+
+        public void Write(BinaryWriter w)
+        {
+            w.Write(id);
+            data.Write(w);
+        }
     }
 }

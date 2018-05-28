@@ -7,34 +7,25 @@ using System.IO;
 
 namespace Game
 {
-    public class Chunk
+    public class Region
     {
-        Block[,,] blocks;
-        bool empty;
-
-        public Chunk()
+        public Region()
         {
-            blocks = new Block[16, 16, 16];
+            Chunks = new Chunk[16,16,16];
         }
 
-        public Block GetBlock(Pos.BlockPos pos)
+        public Chunk[,,] Chunks;
+
+        public Chunk GetChunk(Pos.ChunkPos pos)
         {
-            if (empty)
-            {
-                return null;
-            }
             pos = pos.Normalize();
-            return blocks[pos.X, pos.Y, pos.Z];
+            return Chunks[pos.X, pos.Y, pos.Z];
         }
 
-        public void SetBlock(Pos.BlockPos pos, Block b)
+        public void SetChunk(Pos.ChunkPos pos, Chunk c)
         {
-            if (empty)
-            {
-                return;
-            }
             pos = pos.Normalize();
-            blocks[pos.X, pos.Y, pos.Z] = b;
+            Chunks[pos.X, pos.Y, pos.Z] = c;
         }
 
         public void Read(BinaryReader r)
@@ -47,8 +38,8 @@ namespace Game
                     {
                         if (r.ReadByte() == 1)
                         {
-                            blocks[x, y, z] = new Block();
-                            blocks[x, y, z].Read(r);
+                            Chunks[x, y, z] = new Chunk();
+                            Chunks[x, y, z].Read(r);
                         }
                     }
                 }
@@ -63,10 +54,10 @@ namespace Game
                 {
                     for (int z = 0; z < 16; z++)
                     {
-                        if (blocks[x, y, z] != null)
+                        if (Chunks[x, y, z] != null)
                         {
                             w.Write((byte)1);
-                            blocks[x, y, z].Write(w);
+                            Chunks[x, y, z].Write(w);
                         }
                         else
                         {

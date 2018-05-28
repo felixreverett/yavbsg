@@ -55,8 +55,14 @@
     <Compile Include="Chunk.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Block.cs" />
+    <Compile Include="Draw.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="NBT.cs" />
+    <Compile Include="Pos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Region.cs" />
+    <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
