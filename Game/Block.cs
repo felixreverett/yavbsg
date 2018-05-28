@@ -9,7 +9,7 @@ namespace Game
 {
     public class Block
     {
-        public int id;
+        public int id; //all blocks have an ID
         public NamedBinaryTag.ObjectProperty data;
         //scripts go here
 

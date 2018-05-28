@@ -11,13 +11,13 @@ namespace Game
 {
     public class World
     {
-        public Entity Player;
+        public Entity Player; //temporary to track camera
         Dictionary<string, Region> Regions;
 
         public World()
         {
             Player = new Entity() { Position = new Vector3() };
-            Regions = new Dictionary<string, Region>();
+            Regions = new Dictionary<string, Region>(); //loaded regions
         }
 
         public void LoadChunk(Pos.ChunkPos pos)
@@ -41,7 +41,7 @@ namespace Game
             if (File.Exists(f))
             {
                 using (var fs = new FileStream(f, FileMode.Open))
-                using (var read = new BinaryReader(fs))
+                using (var read = new BinaryReader(fs)) //big old stream of bytes
                 {
                     region.Read(read);
                 }
@@ -68,7 +68,7 @@ namespace Game
             return c;
         }
 
-        public Block GetBlock(Pos.BlockPos pos)
+        public Block GetBlock(Pos.BlockPos pos) //retrieves a block from anywhere in the world
         {
             Pos.ChunkPos p = pos.ToChunk();
             Pos.ChunkPos regionPos = new Pos.BlockPos(p.X, p.Y, p.Z).ToChunk();
@@ -84,7 +84,7 @@ namespace Game
             return null;
         }
 
-        public void Render()
+        public void Render() //renders the entire world BADLY BADLY DO NOT USE IT YET
         {
             foreach (Region r in Regions.Values)
             {
@@ -105,7 +105,7 @@ namespace Game
             }
         }
 
-        public void DrawBlock(Pos.BlockPos p)
+        public void DrawBlock(Pos.BlockPos p) //renders an individual block at coordinates p
         {
             GL.MatrixMode(MatrixMode.Modelview);
             GL.PushMatrix();
@@ -113,7 +113,7 @@ namespace Game
             GL.Translate(p.X, p.Y, p.Z);
             for (int i = 0; i < 6; i++)
             {
-                if (GetBlock(p + Pos.DIRECTIONS[i]) == null)
+                if (GetBlock(p + Pos.DIRECTIONS[i]) == null) //later will be IF NOT OPAQUE
                 {
                     Draw.DrawFace(i);
                 }

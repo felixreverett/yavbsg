@@ -70,7 +70,7 @@ namespace Game
             }
         }
 
-        public class ObjectProperty : Property<Dictionary<string, object>>
+        --public class ObjectProperty : Property<Dictionary<string, object>>
         {
             public override void Read(BinaryReader r)
             {
