@@ -1,16 +1,4 @@
-﻿// C# example program to demonstrate OpenTK
-//
-// Steps:
-// 1. Create an empty C# console application project in Visual Studio
-// 2. Place OpenTK.dll in the directory of the C# source file
-// 3. Add System.Drawing and OpenTK as References to the project
-// 4. Paste this source code into the C# source file
-// 5. Run. You should see a colored triangle. Press ESC to quit.
-//
-// Copyright (c) 2013 Ashwin Nanjappa
-// Released under the MIT License
-
-using System;
+﻿using System;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
@@ -20,6 +8,8 @@ namespace Game
 {
     class Game : GameWindow
     {
+        #region Temporary Rotation Test
+
         float n;
 
         float[] C = new float[3] {0.0f, 0.0f, 10.0f}; //x1
@@ -37,6 +27,7 @@ namespace Game
 
         Vector3 PositionVector = new Vector3(0f,0f,0f);
         Vector3 DirectionVector;
+        #endregion
 
         public Game()
             : base(800, 600, GraphicsMode.Default, "My Game")
@@ -179,6 +170,8 @@ namespace Game
             // The 'using' idiom guarantees proper resource cleanup.
             // We request 30 UpdateFrame events per second, and unlimited
             // RenderFrame events (as fast as the computer can handle).
+
+
             using (Game game = new Game())
             {
                 game.Run(30.0);

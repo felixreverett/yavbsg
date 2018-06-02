@@ -10,15 +10,15 @@ namespace Game
     public class Pos
     {
         public static readonly BlockPos[] DIRECTIONS = new[] {
-            new BlockPos(0, 0, -1),
-            new BlockPos(-1, 0, 0),
-            new BlockPos(0, 0, 1),
-            new BlockPos(1, 0, 0),
-            new BlockPos(0, 1, 0),
-            new BlockPos(0, -1, 0),
+            new BlockPos(0, 0, -1), //west
+            new BlockPos(-1, 0, 0), //south
+            new BlockPos(0, 0, 1),  //east
+            new BlockPos(1, 0, 0),  //north
+            new BlockPos(0, 1, 0),  //up
+            new BlockPos(0, -1, 0), //down
         };
 
-        public struct BlockPos
+        public struct BlockPos //the location of a block?
         {
             public int X;
             public int Y;
@@ -35,17 +35,17 @@ namespace Game
                 return new BlockPos(X % 16, Y % 16, Z % 16);
             }
             
-            public ChunkPos ToChunk()
+            public ChunkPos ToChunk() //finds chunk from block?
             {
                 return new ChunkPos((int)Math.Floor(X / 16f), (int)Math.Floor(Y / 16f), (int)Math.Floor(Z / 16f));
             }
 
-            public static BlockPos operator +(BlockPos a, BlockPos b)
+            public static BlockPos operator +(BlockPos a, BlockPos b) //when you use + with two BlockPos structs it does this
             {
                 return new BlockPos(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
             }
 
-            public static IEnumerable<BlockPos> Iter()
+            public static IEnumerable<BlockPos> Iter() //this gets every block in a chunk I think?
             {
                 for (int x = 0; x < 16; x++)
                 {
@@ -71,7 +71,7 @@ namespace Game
                 X = x; Y = y; Z = z;
             }
 
-            public ChunkPos Normalize()
+            public ChunkPos Normalize() //grabs your relative chunk ID?
             {
                 this += new ChunkPos(16, 16, 16);
                 return new ChunkPos(X % 16, Y % 16, Z % 16);

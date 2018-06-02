@@ -30,15 +30,6 @@ namespace Game
                         GL.Vertex3(1, -1, -1);
                         return;
                     }
-                case 2: //south
-                    {
-                        GL.Color3(0.85f, 0.85f, 0.85f);
-                        GL.Vertex3(-1, -1, 1);
-                        GL.Vertex3(-1, 1, 1);
-                        GL.Vertex3(1, 1, 1);
-                        GL.Vertex3(1, -1, 1);
-                        return;
-                    }
                 case 1: //east
                     {
                         GL.Color3(0.8f, 0.8f, 0.8f);
@@ -46,6 +37,15 @@ namespace Game
                         GL.Vertex3(-1, -1, 1);
                         GL.Vertex3(-1, 1, 1);
                         GL.Vertex3(-1, 1, -1);
+                        return;
+                    }
+                case 2: //south
+                    {
+                        GL.Color3(0.85f, 0.85f, 0.85f);
+                        GL.Vertex3(-1, -1, 1);
+                        GL.Vertex3(-1, 1, 1);
+                        GL.Vertex3(1, 1, 1);
+                        GL.Vertex3(1, -1, 1);
                         return;
                     }
                 case 3: //west

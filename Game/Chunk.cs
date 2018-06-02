@@ -17,7 +17,7 @@ namespace Game
             blocks = new Block[16, 16, 16];
         }
 
-        public Block GetBlock(Pos.BlockPos pos)
+        public Block GetBlock(Pos.BlockPos pos) //returns a relative block from a chunk
         {
             if (empty)
             {
@@ -27,7 +27,7 @@ namespace Game
             return blocks[pos.X, pos.Y, pos.Z];
         }
 
-        public void SetBlock(Pos.BlockPos pos, Block b)
+        public void SetBlock(Pos.BlockPos pos, Block b) //sets a block relative to a chunk
         {
             if (empty)
             {
@@ -37,7 +37,7 @@ namespace Game
             blocks[pos.X, pos.Y, pos.Z] = b;
         }
 
-        public void Read(BinaryReader r)
+        public void Read(BinaryReader r) //reads (and loads?) from a file
         {
             for (int x = 0; x < 16; x++)
             {
@@ -55,7 +55,7 @@ namespace Game
             }
         }
 
-        public void Write(BinaryWriter w)
+        public void Write(BinaryWriter w)//writes a chunk
         {
             for (int x = 0; x < 16; x++)
             {
